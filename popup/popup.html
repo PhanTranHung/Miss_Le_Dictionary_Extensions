@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dictionary</title>
+
+    <link rel="stylesheet" type="text/css" href="/materials/css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="setting.css" />
+    <link rel="stylesheet" type="text/css" href="popup.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="top">
+        <textarea
+          autofocus
+          class="text"
+          id="text"
+          placeholder="Input here"
+        ></textarea>
+      </div>
+      <div class="actions">
+        <input
+          id="btn-submit"
+          class="button-happy"
+          type="submit"
+          value="Search"
+        />
+      </div>
+      <div class="box">
+        <fieldset class="inner-box">
+          <legend class="field-name">Oxford Dictionaries</legend>
+          <div id="field-content"></div>
+        </fieldset>
+      </div>
+      <div class="box">
+        <fieldset class="inner-box">
+          <legend class="field-name">Google Tranlation</legend>
+          <div></div>
+        </fieldset>
+      </div>
+    </div>
+  </body>
+  <script src="popup.js"></script>
+</html>
