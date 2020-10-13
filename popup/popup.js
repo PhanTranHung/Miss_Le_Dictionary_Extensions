@@ -1,18 +1,29 @@
+import { events, responseType, storageKey } from "../helper/variables.js";
+import storage from "../helper/storage.js";
+
 const textarea = document.getElementById("text");
 const btnsubmit = document.getElementById("btn-submit");
 const fieldcontent = document.getElementById("field-content");
+const detail = document.getElementById("go-to-detail");
 
 textarea.addEventListener("keypress", (e) => "Enter" === e.code && main());
 btnsubmit.addEventListener("click", main);
 
-const events = {
-  TRANSLATE: "translate",
-  SPEAK: "speak",
-};
+// chrome.browserAction.onClicked.addListener(function (tab) {
 
-// chrome.runtime.sendMessage({ greeting: "hello" }, function (response) {
-//   console.log(response.farewell);
 // });
+
+function loadLocalData() {
+  let data = storage.getData(storageKey.POPUP);
+  textarea.value = data.question;
+  textarea.select();
+
+  fillUI(data);
+}
+
+function saveDataToLocal(question, oxford) {}
+
+loadLocalData();
 
 function main() {
   let question = textarea.value.trim();
@@ -27,14 +38,28 @@ function onceSendMessage(event, payload, cb) {
 }
 
 function fillUI(response) {
-  console.log(response);
-  let html = response.html;
-  fieldcontent.innerHTML = html;
-  binding();
+  // console.log(response);
+
+  switch (response.type) {
+    case responseType.ANSWER:
+      fieldcontent.innerHTML = response.dict;
+      break;
+    case responseType.SUGGEST:
+      let title = `<div class="result-header">“${response.question}” not found</div><div class="didyoumean">Did you mean:</div>`;
+      fieldcontent.innerHTML = title + response.dict;
+      break;
+    case responseType.INIT:
+      return (fieldcontent.innerHTML = response.dict);
+    default:
+      console.log("Unknown response type", response.message);
+  }
+  binding(response);
 }
 
-function binding() {
+function binding(response) {
   bindingAudioBtn();
+  bindingCollapse();
+  bindingClickEvent(response);
 }
 
 function bindingAudioBtn() {
@@ -48,4 +73,29 @@ function bindingAudioBtn() {
       })
     );
   }
+}
+
+function bindingCollapse() {
+  let elements = [
+    ...document.getElementsByClassName("box_title"),
+    ...document.getElementsByClassName("heading"),
+  ].map((e) => {
+    e.addEventListener("click", (evt) => {
+      evt.target.parentElement.classList.toggle("is-active");
+    });
+  });
+}
+
+function bindingClickEvent(response) {
+  detail.classList.add("active");
+  detail.addEventListener("click", (evt) => createTab(response.url));
+
+  $("ul.result-list li").on("click", function (evt) {
+    textarea.value = $(this).text().trim();
+    main();
+  });
+}
+
+function createTab(url, active = true, cb = undefined) {
+  chrome.tabs.create({ url, active }, cb);
 }

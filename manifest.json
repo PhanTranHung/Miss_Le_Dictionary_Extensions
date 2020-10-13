@@ -24,5 +24,26 @@
     "persistent": false,
     "page": "bg/background.html"
   },
-  "permissions": ["https://*.oxfordlearnersdictionaries.com/", "storage"]
+  "permissions": [
+    "https://*.oxfordlearnersdictionaries.com/",
+    "storage",
+    "tabs"
+  ],
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "windows": "Alt+A",
+        "mac": "Alt+A",
+        "chromeos": "Alt+A",
+        "linux": "Alt+A"
+      }
+    },
+    "turn_on_the_light": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+X",
+        "mac": "Command+Shift+X"
+      },
+      "description": "Turn on the Light"
+    }
+  }
 }

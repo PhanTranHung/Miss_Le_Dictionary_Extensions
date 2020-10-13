@@ -177,38 +177,92 @@
   font-style: italic;
   font-weight: 400;
 }
+.webtop .collapse {
+  background-color: #faded7;
+  border-left: 0.1875rem solid #f08b6e;
+  margin: 0.5rem 0rem 0.5rem 0rem;
+  display: inline-block;
+  width: 100%;
+}
+.webtop .collapse .unbox {
+  -webkit-transition: all 2s;
+  -o-transition: all 2s;
+  transition: all 2s;
+}
+.webtop .collapse .unbox .box_title {
+  display: block;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  font-size: 1.125rem;
+  cursor: pointer;
+  -webkit-transition: background-color 100ms linear;
+  -o-transition: background-color 100ms linear;
+  transition: background-color 100ms linear;
+}
+.webtop .collapse .unbox .box_title:hover {
+  background-color: #faded7;
+}
+.webtop .collapse .unbox .box_title::before {
+  background-position: center top;
+  background-position: center bottom;
+  width: 14px;
+  height: 14px;
+  background-image: url(/materials/imgs/icon-plus-minus-orange.png);
+  background-size: 100% auto;
+  content: "";
+  display: inline-block;
+  margin-right: 12px;
+  position: relative;
+  top: 1px;
+}
+.webtop .collapse .unbox .body,
+.webtop .collapse .unbox table {
+  display: none;
+}
+.webtop .collapse .is-active .box_title {
+  background-position: center top;
+}
+.webtop .collapse .is-active .body {
+  padding: 1rem;
+  background-color: #fdf3f0;
+  display: block;
+}
+.webtop .collapse .is-active table {
+  display: inherit;
+}
 
-.ox5ksym_c1,
-.ox5ksymsub_c1 {
-  background-image: url(/materials/imgs/ox5000_c1.svg);
-}
-.ox5ksym_c1:hover,
-.ox5ksymsub_c1:hover {
-  background-image: url(/materials/imgs/ox5000_c1_hover.svg);
-  -webkit-transition: background-image 100ms linear;
-  -o-transition: background-image 100ms linear;
-  transition: background-image 100ms linear;
+.verb_form {
+  font-weight: 600;
+  color: #1a3561;
+  display: block;
 }
 
-.ox3ksym_b2,
-.ox3ksymsub_b2 {
-  background-image: url(/materials/imgs/ox3000_b2.svg);
-}
-.ox3ksym_b2:hover,
-.ox3ksymsub_b2:hover {
-  background-image: url(/materials/imgs/ox3000_b2_hover.svg);
-  -webkit-transition: background-image 100ms linear;
-  -o-transition: background-image 100ms linear;
-  transition: background-image 100ms linear;
+tr.verb_form {
+  margin: 0.5rem 0rem;
 }
 
-.ox5ksym_b2,
-.ox5ksymsub_b2 {
-  background-image: url(/materials/imgs/ox5000_b2.svg);
+table td {
+  vertical-align: middle;
+  font-weight: normal;
 }
+
+.vf_prefix {
+  font-weight: 400;
+  font-style: normal;
+  color: #333333;
+}
+
+.ox5ksym_a1:hover,
+.ox5ksym_a2:hover,
+.ox5ksym_b1:hover,
 .ox5ksym_b2:hover,
-.ox5ksymsub_b2:hover {
-  background-image: url(/materials/imgs/ox5000_b2_hover.svg);
+.ox5ksym_c1:hover,
+.ox5ksym_c2:hover,
+.ox3ksym_a1:hover,
+.ox3ksym_a2:hover,
+.ox3ksym_b1:hover,
+.ox3ksym_b2:hover,
+.ox3ksym_c1:hover,
+.ox3ksym_c2:hover {
   -webkit-transition: background-image 100ms linear;
   -o-transition: background-image 100ms linear;
   transition: background-image 100ms linear;
@@ -221,9 +275,6 @@
 .ox3ksym_a1:hover,
 .ox3ksymsub_a1:hover {
   background-image: url(/materials/imgs/ox3000_a1_hover.svg);
-  -webkit-transition: background-image 100ms linear;
-  -o-transition: background-image 100ms linear;
-  transition: background-image 100ms linear;
 }
 
 .ox3ksym_a2,
@@ -236,6 +287,96 @@
   -webkit-transition: background-image 100ms linear;
   -o-transition: background-image 100ms linear;
   transition: background-image 100ms linear;
+}
+
+.ox5ksym_a1,
+.ox5ksymsub_a1 {
+  background-image: url(/materials/imgs/ox5000_a1.svg);
+}
+.ox5ksym_a1:hover,
+.ox5ksymsub_a1:hover {
+  background-image: url(/materials/imgs/ox5000_a1_hover.svg);
+}
+
+.ox5ksym_a2,
+.ox5ksymsub_a2 {
+  background-image: url(/materials/imgs/ox5000_a2.svg);
+}
+.ox5ksym_a2:hover,
+.ox5ksymsub_a2:hover {
+  background-image: url(/materials/imgs/ox5000_a2_hover.svg);
+}
+
+.ox3ksym_b1,
+.ox3ksymsub_b1 {
+  background-image: url(/materials/imgs/ox3000_b1.svg);
+}
+.ox3ksym_b1:hover,
+.ox3ksymsub_b1:hover {
+  background-image: url(/materials/imgs/ox3000_b1_hover.svg);
+}
+
+.ox3ksym_b2,
+.ox3ksymsub_b2 {
+  background-image: url(/materials/imgs/ox3000_b2.svg);
+}
+.ox3ksym_b2:hover,
+.ox3ksymsub_b2:hover {
+  background-image: url(/materials/imgs/ox3000_b2_hover.svg);
+}
+
+.ox5ksym_b1,
+.ox5ksymsub_b1 {
+  background-image: url(/materials/imgs/ox5000_b1.svg);
+}
+.ox5ksym_b1:hover,
+.ox5ksymsub_b1:hover {
+  background-image: url(/materials/imgs/ox5000_b1_hover.svg);
+}
+
+.ox5ksym_b2,
+.ox5ksymsub_b2 {
+  background-image: url(/materials/imgs/ox5000_b2.svg);
+}
+.ox5ksym_b2:hover,
+.ox5ksymsub_b2:hover {
+  background-image: url(/materials/imgs/ox5000_b2_hover.svg);
+}
+
+.ox3ksym_c1,
+.oxksymsub_c1 {
+  background-image: url(/materials/imgs/ox3000_c1.svg);
+}
+.ox3ksym_c1:hover,
+.oxksymsub_c1:hover {
+  background-image: url(/materials/imgs/ox3000_c1_hover.svg);
+}
+
+.ox3ksym_c2,
+.ox3ksymsub_c2 {
+  background-image: url(/materials/imgs/ox3000_c2.svg);
+}
+.ox3ksym_c2:hover,
+.ox3ksymsub_c2:hover {
+  background-image: url(/materials/imgs/ox3000_c2_hover.svg);
+}
+
+.ox5ksym_c1,
+.ox5ksymsub_c1 {
+  background-image: url(/materials/imgs/ox5000_c1.svg);
+}
+.ox5ksym_c1:hover,
+.ox5ksymsub_c1:hover {
+  background-image: url(/materials/imgs/ox5000_c1_hover.svg);
+}
+
+.ox5ksym_c1,
+.ox5ksymsub_c1 {
+  background-image: url(/materials/imgs/ox5000_c1.svg);
+}
+.ox5ksym_c1:hover,
+.ox5ksymsub_c1:hover {
+  background-image: url(/materials/imgs/ox5000_c1_hover.svg);
 }
 
 .container {
@@ -293,11 +434,58 @@
   border: 1px solid #989898;
   border-radius: 4px;
   background: white;
+  position: relative;
 }
 .box .inner-box .field-name {
   padding: 0 5px 5px;
   font-size: 16px;
   font-weight: bold;
+}
+.box .inner-box .dictlick {
+  display: none;
+  position: absolute;
+  top: 3px;
+  right: 4px;
+  background-color: white;
+  padding: 0 5px;
+  font-size: 13px;
+  cursor: pointer;
+  user-select: none;
+}
+.box .inner-box .dictlick:after {
+  background-image: url(/materials/imgs/external-link-icon.png);
+  background-repeat: no-repeat;
+  height: 15px;
+  width: 15px;
+  vertical-align: middle;
+  margin-left: 5px;
+  content: "";
+  position: relative;
+  top: -1px;
+  display: inline-block;
+  background-size: contain;
+}
+.box .inner-box .active {
+  display: block;
+}
+.box .inner-box .field-content .result-header {
+  color: #0d3880;
+  font-size: 18px;
+  font-weight: bold;
+}
+.box .inner-box .field-content .didyoumean {
+  font-size: 13px;
+  line-height: 2;
+  margin: 1px 3px;
+}
+.box .inner-box .field-content .result-list {
+  list-style: initial;
+  padding-left: 25px;
+  margin: 2px 0px;
+}
+.box .inner-box .field-content .result-list li {
+  padding: 1px 0;
+  font-size: 14px;
 }
 
 html {
