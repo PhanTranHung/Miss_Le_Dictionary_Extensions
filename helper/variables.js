@@ -3,10 +3,12 @@ export const events = {
   SPEAK: "speak",
 };
 
-export const responseType = {
+export const responseTypes = {
   ANSWER: "answer",
   SUGGEST: "suggest",
   INIT: "init",
+  ERROR: "error",
+  STORED: "stored",
 };
 
 export const storageKey = {

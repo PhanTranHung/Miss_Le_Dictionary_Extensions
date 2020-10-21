@@ -1,5 +1,6 @@
-import { events, responseType, storageKey } from "../helper/variables.js";
+import { events, responseTypes, storageKey } from "../helper/variables.js";
 import storage from "../helper/storage.js";
+import { translate } from "../helper/reducer.js";
 
 const textarea = document.getElementById("text");
 const btnsubmit = document.getElementById("btn-submit");
@@ -21,7 +22,17 @@ function loadLocalData() {
   fillUI(data);
 }
 
-function saveDataToLocal(question, oxford) {}
+function saveDataToLocal(data) {
+  switch (data.type) {
+    case responseTypes.ANSWER:
+    case responseTypes.SUGGEST:
+      data.type = responseTypes.STORED;
+      return storage.setData(storageKey.POPUP, data);
+
+    default:
+      console.log("Can't save response to local storage");
+  }
+}
 
 loadLocalData();
 
@@ -30,7 +41,11 @@ function main() {
   if (question.length <= 0) {
     textarea.value = "";
     textarea.focus();
-  } else onceSendMessage(events.TRANSLATE, question, fillUI);
+  } else
+    onceSendMessage(events.TRANSLATE, question, (response) => {
+      saveDataToLocal(response);
+      fillUI(response);
+    });
 }
 
 function onceSendMessage(event, payload, cb) {
@@ -41,18 +56,25 @@ function fillUI(response) {
   // console.log(response);
 
   switch (response.type) {
-    case responseType.ANSWER:
-      fieldcontent.innerHTML = response.dict;
-      break;
-    case responseType.SUGGEST:
+    case responseTypes.SUGGEST:
       let title = `<div class="result-header">“${response.question}” not found</div><div class="didyoumean">Did you mean:</div>`;
       fieldcontent.innerHTML = title + response.dict;
       break;
-    case responseType.INIT:
+
+    case responseTypes.INIT:
       return (fieldcontent.innerHTML = response.dict);
+
+    case responseTypes.ANSWER:
+    case responseTypes.STORED:
+      fieldcontent.innerHTML = response.dict;
+      break;
+
+    case responseTypes.ERROR:
+      console.log("An error was occur", response.message);
     default:
-      console.log("Unknown response type", response.message);
+      console.log("Unknown response type");
   }
+
   binding(response);
 }
 

@@ -1,6 +1,6 @@
 import { queryOxford } from "../helper/network.js";
 import { playSound } from "../helper/audio.js";
-import { events, responseType, storageKey } from "../helper/variables.js";
+import { events, responseTypes, storageKey } from "../helper/variables.js";
 import storage from "../helper/storage.js";
 
 chrome.runtime.onInstalled.addListener(function (details) {
@@ -12,7 +12,7 @@ chrome.runtime.onInstalled.addListener(function (details) {
     dict:
       "<h3>Thank you for using Miss Le Dictionary</h3><div>Press <code>Alt + A</code> to open extension</div>",
     url: undefined,
-    type: responseType.INIT,
+    type: responseTypes.INIT,
   });
 });
 
@@ -55,11 +55,12 @@ function translate(question, sendResponse) {
 
       if (url.pathname.startsWith("/definition")) {
         response.dict = root.getElementsByClassName("webtop")[0].outerHTML;
-        response.type = responseType.ANSWER;
+        response.type = responseTypes.ANSWER;
       } else if (url.pathname.startsWith("/spellcheck")) {
         response.dict = root.getElementsByClassName("result-list")[0].outerHTML;
-        response.type = responseType.SUGGEST;
+        response.type = responseTypes.SUGGEST;
       } else {
+        response.type = responseTypes.ERROR;
         response.message = "URL undefined";
       }
       sendResponse(response);
